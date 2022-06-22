@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{ISO8601} %-5p [%t] %c{1}:%L - %m%n"/>
+        </Console>
+        <SplunkHttp name="splunkhttp"
+                    url="http://localhost:8088/services/collector/event"
+                    token="a4830feb-af0e-4732-aa55-007ad55af472"
+                    host="localhost"
+                    index="spring_boot"
+                    source="spring"
+                    sourcetype="log4j"
+                    messageFormat="text"
+                    disableCertificateValidation="true">
+            <PatternLayout pattern="%m"/>
+        </SplunkHttp>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="splunkhttp"/>
+        </Root>
+    </Loggers>
+</Configuration>
