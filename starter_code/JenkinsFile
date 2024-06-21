@@ -19,6 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
+                    sh 'echo Deploying...'
                     sh 'docker build -t jenkins .'
                     sh 'docker run -d -p 8080:8080 jenkins'
                 }
