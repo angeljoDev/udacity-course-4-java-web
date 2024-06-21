@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'docker build -t jenkins .'
+                    sh 'docker run -d -p 8080:8080 jenkins'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
+            junit 'target/surefire-reports/*.xml'
+        }
+    }
+}
