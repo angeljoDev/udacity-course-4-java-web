@@ -62,13 +62,13 @@
             <artifactId>splunk-library-javalogging</artifactId>
             <version>1.8.0</version>
         </dependency>
-        -->
+
             <dependency>
                 <groupId>com.splunk</groupId>
                 <artifactId>splunk</artifactId>
                 <version>1.6.0.0</version>
             </dependency>
-
+        -->
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j2 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
