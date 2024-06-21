@@ -1,37 +1,39 @@
 pipeline {
     agent any
-
     stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Build') {
             steps {
-                script {
+                dir('starter_code') { // Mueve a la carpeta correcta
                     sh 'mvn clean package'
                 }
             }
         }
         stage('Test') {
             steps {
-                script {
-                    echo 'Testing...'
+                dir('starter_code') {
                     sh 'mvn test'
+                }
+            }
+            post {
+                always {
+                    junit '**/starter_code/target/surefire-reports/*.xml'
                 }
             }
         }
         stage('Deploy') {
             steps {
-                script {
-                    sh 'echo Deploying...'
-                    sh 'docker build -t jenkins .'
-                    sh 'docker run -d -p 8080:8080 jenkins'
-                }
+                echo 'Deploy stage'
             }
         }
     }
-
     post {
         always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-            junit 'target/surefire-reports/*.xml'
+            archiveArtifacts artifacts: '**/starter_code/target/*.jar', allowEmptyArchive: true
         }
     }
 }
