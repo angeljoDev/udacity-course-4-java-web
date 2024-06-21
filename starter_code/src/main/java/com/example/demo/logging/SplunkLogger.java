@@ -1,9 +1,7 @@
 package com.example.demo.logging;
 
-import com.splunk.*;
-
 public class SplunkLogger {
-    private static final String SPLUNK_HOST = "localhost";
+/*    private static final String SPLUNK_HOST = "localhost";
     private static final int SPLUNK_PORT = 8089;
     private static final String SPLUNK_TOKEN = "a4830feb-af0e-4732-aa55-007ad55af472";
     private static final String HEC_URL = "http://localhost:8088/services/collector/event";
@@ -32,5 +30,5 @@ public class SplunkLogger {
         } catch (HttpException e) {
             System.err.println("Error sending log to Splunk: " + e.getMessage() + e.getCause() + e.getDetail());
         }
-    }
+    }*/
 }

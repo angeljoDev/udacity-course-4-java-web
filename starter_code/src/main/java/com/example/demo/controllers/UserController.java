@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import com.example.demo.logging.SplunkLogger;
 import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.CartRepository;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/user")
 public class UserController {
 
-	private static final SplunkLogger splunkLogger = new SplunkLogger();
+	//private static final SplunkLogger splunkLogger = new SplunkLogger();
 	private UserRepository userRepository;
 
 	@Autowired
@@ -45,7 +44,7 @@ public class UserController {
 		User user = new User();
 		user.setUsername(createUserRequest.getUsername());
 		if(!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
-			splunkLogger.log("Password not match: " + user.getPassword() + "with:" + createUserRequest.getConfirmPassword());
+			//splunkLogger.log("Password not match: " + user.getPassword() + "with:" + createUserRequest.getConfirmPassword());
 			return  ResponseEntity.badRequest().build();
 		}
 		try{
@@ -57,8 +56,8 @@ public class UserController {
 		}catch(Exception e){
 			System.out.println("Error: " +e.getCause());
 		}
-		splunkLogger.log("User created correctly: " + user.getUsername());
-		splunkLogger.log("test: " + user.getUsername());
+		//splunkLogger.log("User created correctly: " + user.getUsername());
+		//splunkLogger.log("test: " + user.getUsername());
 		return ResponseEntity.ok(user);
 
 	}
