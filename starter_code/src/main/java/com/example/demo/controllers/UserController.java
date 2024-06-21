@@ -58,6 +58,7 @@ public class UserController {
 			System.out.println("Error: " +e.getCause());
 		}
 		splunkLogger.log("User created correctly: " + user.getUsername());
+		splunkLogger.log("test: " + user.getUsername());
 		return ResponseEntity.ok(user);
 
 	}
